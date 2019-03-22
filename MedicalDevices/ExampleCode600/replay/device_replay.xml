@@ -1,0 +1,120 @@
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.0/rti_replay.xsd">
+	 
+	<replay_service name="replayECGDevice">
+		<!--administration>
+			<domain_id>5</domain_id>
+			<distributed_logger>
+				<enabled>true</enabled>
+				<filter_level>WARNING</filter_level>
+			</distributed_logger>
+		</administration>-->
+		<storage>
+			<legacy>
+				<file_path>rti_ice_devices_ecg.dat_0_0</file_path>
+				<domain_mapping>
+					<domain_map legacy_domain_name="domain5"
+						        participant_ref="SimpleConfigParticipant" />
+				</domain_mapping>
+			</legacy>
+		</storage>
+		<domain_participant name="SimpleConfigParticipant">
+			<domain_id> 5</domain_id>
+			<participant_qos>
+				<participant_name>
+					<name>Replay Service: Simulated ECG</name>
+				</participant_name>
+				<user_data>
+					<value>0x67,0x4d,0x7a,0x36,0x62,0x34,0x53,0x55,0x76,0x34,0x71,0x68,0x4f,0x74,0x37,0x30,0x5a,0x70,0x46,0x33,0x71,0x4d,0x75,0x47,0x54,0x75,0x6e,0x64,0x4a,0x36,0x48,0x50,0x7a,0x74,0x4f,0x7a</value>
+				</user_data>
+				<transport_builtin>
+					<!--mask>UDPv4</mask -->
+				</transport_builtin>
+			</participant_qos>
+		</domain_participant>
+		<session name="MainSession"
+			     default_participant_ref="SimpleConfigParticipant">
+			<topic_group name="Everything">
+				<allow_topic_name_filter>ice_Device*,ice_Numeric,ice_SampleArray</allow_topic_name_filter>
+				<allow_type_name_filter>*</allow_type_name_filter>
+				<datawriter_qos>
+					<publish_mode>
+						<kind>ASYNCHRONOUS_PUBLISH_MODE_QOS</kind>
+						<flow_controller_name>DDS_FIXED_RATE_FLOW_CONTROLLER_NAME</flow_controller_name>
+					</publish_mode>
+					<durability>
+						<kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
+					</durability>
+					<liveliness>
+						<lease_duration>
+							<sec>2</sec>
+							<nanosec>0</nanosec>
+						</lease_duration>
+					</liveliness>
+					<ownership>
+						<kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
+					</ownership>
+				</datawriter_qos>
+			</topic_group>
+		</session>
+	</replay_service>
+	
+	<replay_service name="replayPODevice">
+		<!--administration>
+			<domain_id>5</domain_id>
+			<distributed_logger>
+				<enabled>true</enabled>
+				<filter_level>WARNING</filter_level>
+			</distributed_logger>
+		</administration> -->
+		<storage>
+			<legacy>
+				<file_path>rti_ice_devices_pulseoxim.dat_0_0</file_path>
+				<domain_mapping>
+					<domain_map legacy_domain_name="domain5"
+						        participant_ref="SimpleConfigParticipant" />
+				</domain_mapping>
+			</legacy>
+		</storage>
+		<domain_participant name="SimpleConfigParticipant">
+			<domain_id> 5</domain_id>
+			<participant_qos>
+				<participant_name>
+					<name>Replay Service: Simulated Pulse Oximeter</name>
+				</participant_name>
+				<user_data>
+					<value>
+						0x6f,0x31,0x73,0x5a,0x4c,0x54,0x78,0x57,0x42,0x53,0x6c,0x58,0x50,0x4e,0x50,0x79,0x76,0x76,0x4b,0x33,0x38,0x55,0x67,0x67,0x64,0x61,0x75,0x4d,0x78,0x34,0x6c,0x62,0x70,0x39,0x78,0x45</value>
+				</user_data>
+				<transport_builtin>
+					<!--mask>UDPv4</mask -->
+				</transport_builtin>
+			</participant_qos>
+		</domain_participant>
+		<session name="MainSession"
+			     default_participant_ref="SimpleConfigParticipant">
+			<topic_group name="Everything">
+				<allow_topic_name_filter>ice_Device*,ice_Numeric,ice_SampleArray</allow_topic_name_filter>
+				<allow_type_name_filter>*</allow_type_name_filter>
+				<datawriter_qos>
+					<publish_mode>
+						<kind>ASYNCHRONOUS_PUBLISH_MODE_QOS</kind>
+						<flow_controller_name>DDS_FIXED_RATE_FLOW_CONTROLLER_NAME</flow_controller_name>
+					</publish_mode>
+					<durability>
+						<kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
+					</durability>
+					<liveliness>
+						<lease_duration>
+							<sec>2</sec>
+							<nanosec>0</nanosec>
+						</lease_duration>
+					</liveliness>
+					<ownership>
+						<kind>EXCLUSIVE_OWNERSHIP_QOS</kind>
+					</ownership>
+				</datawriter_qos>
+			</topic_group>
+		</session>
+	</replay_service>
+</dds>
